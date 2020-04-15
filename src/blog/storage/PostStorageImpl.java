@@ -31,8 +31,7 @@ public class PostStorageImpl implements PostStorage {
             if (array[i].getTitle().equals(title)) {
                 System.out.println(array[i]);
                 break;
-            }
-            if (array[i].getTitle() != null) {
+            } else {
                 throw new PostNotFoundException("posts by this name were not found");
             }
         }
