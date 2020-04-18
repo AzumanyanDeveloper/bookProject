@@ -26,15 +26,15 @@ public class PostStorageImpl implements PostStorage {
     }
 
     @Override
-    public void getPostByTitle(String title) throws PostNotFoundException {
+    public Post getPostByTitle(String title) throws PostNotFoundException {
         for (int i = 0; i < size; i++) {
             if (array[i].getTitle().equals(title)) {
-                System.out.println(array[i]);
-                break;
+                return array[i];
             } else {
                 throw new PostNotFoundException("posts by this name were not found");
             }
         }
+        return null;
     }
 
     @Override

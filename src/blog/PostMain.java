@@ -3,6 +3,7 @@ package blog;
 import blog.model.Post;
 import blog.model.User;
 import blog.storage.PostStorageImpl;
+
 import java.util.Date;
 import java.util.Scanner;
 
@@ -124,7 +125,8 @@ public class PostMain {
         System.out.println("Input post name by search post");
         String byPostName = scanner.nextLine();
         try {
-            post.getPostByTitle(byPostName);
+            Post posts = post.getPostByTitle(byPostName);
+            System.out.println(posts);
         } catch (PostNotFoundException e) {
             System.out.println(e.getMessage());
             System.out.println("please enter a different name");
@@ -149,7 +151,12 @@ public class PostMain {
         System.out.println("Enter your name to add a post");
         String usrName = scanner.nextLine();
         User users = userStorage.searchUserbyName(usrName);
-        System.out.println("Input post data: (title,text,category)");
+        if (users != null) {
+            System.out.println("Input post data: (title,text,category)");
+        } else {
+            System.out.println("You entered the wrong name (enter the name you entered when registering)");
+            addPosts();
+        }
         try {
             String postDataStr = scanner.nextLine();
             String[] postDate = postDataStr.split(",");
