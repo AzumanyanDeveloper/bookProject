@@ -7,6 +7,11 @@ public interface Commands {
         int POSTS_BY_CATEGORY = 3;
         int ALL_POSTS = 4;
         int SERACH_BY_KEYWORD = 5;
+        int ALL_USERS = 6;
+
+        int LOGIN = 1;
+        int REGISTER = 2;
+        int LOGOUT = 7;
 
 
     }
