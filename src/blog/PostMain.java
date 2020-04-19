@@ -148,7 +148,7 @@ public class PostMain {
 
     private static void addPosts() {
 
-            System.out.println("Input post data: (title,text,category)");
+         System.out.println("Input post data: (title,text,category)");
         try {
             String postDataStr = scanner.nextLine();
             String[] postDate = postDataStr.split(",");
