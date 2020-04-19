@@ -1,5 +1,6 @@
-package blog;
+package blog.storage;
 
+import blog.exceptions.PostNotFoundException;
 import blog.model.Post;
 
 public interface PostStorage {

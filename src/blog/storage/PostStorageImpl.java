@@ -1,7 +1,6 @@
 package blog.storage;
 
-import blog.PostNotFoundException;
-import blog.PostStorage;
+import blog.exceptions.PostNotFoundException;
 import blog.model.Post;
 
 public class PostStorageImpl implements PostStorage {

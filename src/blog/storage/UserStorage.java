@@ -1,4 +1,4 @@
-package blog;
+package blog.storage;
 
 import blog.model.User;
 
@@ -15,9 +15,7 @@ public class UserStorage {
 
     private void extend() {
         User[] temp = new User[users.length + 10];
-        for (int i = 0; i < users.length; i++) {
-            temp[i] = users[i];
-        }
+        System.arraycopy(users, 0, temp, 0, users.length);
         users = temp;
     }
 
@@ -27,9 +25,9 @@ public class UserStorage {
         }
     }
 
-    public User userSearch(String userEmail) {
+    public User getUserbyEmailOrPassword(String userEmail, String userInput) {
         for (int i = 0; i < size; i++) {
-            if (users[i].getEmail().equals(userEmail)) {
+            if (users[i].getEmail().equals(userEmail) && users[i].getPassword().equals(userInput)) {
                 return users[i];
             }
 

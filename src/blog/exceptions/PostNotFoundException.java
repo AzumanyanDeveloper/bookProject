@@ -1,4 +1,4 @@
-package blog;
+package blog.exceptions;
 
 public class PostNotFoundException extends Exception {
     public PostNotFoundException() {

@@ -1,8 +1,10 @@
 package blog;
 
+import blog.exceptions.PostNotFoundException;
 import blog.model.Post;
 import blog.model.User;
 import blog.storage.PostStorageImpl;
+import blog.storage.UserStorage;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -13,6 +15,7 @@ public class PostMain {
     static Scanner scanner = new Scanner(System.in);
     static UserStorage userStorage = new UserStorage();
     static User user = new User();
+
     public static void main(String[] args) {
         startPage();
     }
@@ -84,22 +87,17 @@ public class PostMain {
 
 
     private static void userLogin() {
-        System.out.println("Enter your Email");
-        String userEmailStr = scanner.nextLine();
-        User email = userStorage.userSearch(userEmailStr);
-        if (email != null) {
-            System.out.println("Welcome " + email.getName() + " " + email.getSurName());
-            System.out.println("Enter your password");
-            String passUserStr = scanner.nextLine();
-            User pass = userStorage.userSearchpass(passUserStr);
-            if (pass != null) {
-                System.out.println("You are successfully logged in");
-                loginUsersForm();
-            } else {
-                System.out.println("You entered an incorrect password.Please enter again");
-            }
+        System.out.println("Enter your Email or Password (email,password)");
+        String userInputStr = scanner.nextLine();
+        String[] userInput = userInputStr.split(",");
+        User returnUser = userStorage.getUserbyEmailOrPassword(userInput[0], userInput[1]);
+        user = returnUser;
+        if (returnUser != null) {
+            System.out.println("Welcome " + returnUser.getName() + " " + returnUser.getSurName());
+            System.out.println("You are successfully logged in");
+            loginUsersForm();
         } else {
-            System.out.println("The account for this email was not found.Please enter again or register");
+            System.out.println("You entered an incorrect email or password.Please enter again");
         }
 
 
@@ -109,11 +107,13 @@ public class PostMain {
         System.out.println("Input user data: (name,surName,email,password)");
         String userDataStr = scanner.nextLine();
         String[] userDate = userDataStr.split(",");
-        user.setName(userDate[0]);
-        user.setSurName(userDate[1]);
-        user.setEmail(userDate[2]);
-        user.setPassword(userDate[3]);
-        userStorage.add(user);
+        User newUser = new User();
+        newUser.setName(userDate[0]);
+        newUser.setSurName(userDate[1]);
+        newUser.setEmail(userDate[2]);
+        newUser.setPassword(userDate[3]);
+        userStorage.add(newUser);
+        user = newUser;
         System.out.println("Welcome " + user.getName() + " " + user.getSurName());
         loginUsersForm();
 
