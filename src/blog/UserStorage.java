@@ -46,13 +46,4 @@ public class UserStorage {
         }
         return null;
     }
-
-    public User searchUserbyName(String name) {
-        for (int i = 0; i < size; i++) {
-            if (users[i].getName().equals(name)) {
-                return users[i];
-            }
-        }
-        return null;
-    }
 }
