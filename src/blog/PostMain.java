@@ -12,7 +12,7 @@ public class PostMain {
     static PostStorageImpl post = new PostStorageImpl();
     static Scanner scanner = new Scanner(System.in);
     static UserStorage userStorage = new UserStorage();
-
+    static User user = new User();
     public static void main(String[] args) {
         startPage();
     }
@@ -109,7 +109,6 @@ public class PostMain {
         System.out.println("Input user data: (name,surName,email,password)");
         String userDataStr = scanner.nextLine();
         String[] userDate = userDataStr.split(",");
-        User user = new User();
         user.setName(userDate[0]);
         user.setSurName(userDate[1]);
         user.setEmail(userDate[2]);
@@ -148,10 +147,7 @@ public class PostMain {
 
 
     private static void addPosts() {
-        System.out.println("Enter your name to add a post");
-        String usrName = scanner.nextLine();
-        User users = userStorage.searchUserbyName(usrName);
-        if (users != null) {
+        if (user != null) {
             System.out.println("Input post data: (title,text,category)");
         } else {
             System.out.println("You entered the wrong name (enter the name you entered when registering)");
@@ -164,7 +160,7 @@ public class PostMain {
             posts.setTitle(postDate[0]);
             posts.setText(postDate[1]);
             posts.setCategory(postDate[2]);
-            posts.setUser(users);
+            posts.setUser(user);
             Date date = new Date();
             posts.setDate(date);
             post.add(posts);
