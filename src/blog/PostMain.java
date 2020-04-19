@@ -147,12 +147,8 @@ public class PostMain {
 
 
     private static void addPosts() {
-        if (user != null) {
+
             System.out.println("Input post data: (title,text,category)");
-        } else {
-            System.out.println("You entered the wrong name (enter the name you entered when registering)");
-            addPosts();
-        }
         try {
             String postDataStr = scanner.nextLine();
             String[] postDate = postDataStr.split(",");
